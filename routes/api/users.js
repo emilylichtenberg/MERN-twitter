@@ -15,8 +15,6 @@ const validateLoginInput = require('../../validation/login');
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
     // this means '/api/users/test'
 
-
-
 router.post("/register", (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
     
@@ -89,28 +87,7 @@ router.post("/login", (req, res) => {
                 }
             })
     })
-//   User.findOne({ handle }).then(user => {
-//     if (!user) {
-//       errors.handle = "This user does not exist";
-//       return res.status(400).json(errors);
-//     }
 
-//     bcrypt.compare(password, user.password).then(isMatch => {
-//       if (isMatch) {
-//         const payload = { id: user.id, handle: user.handle };
-
-//         jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-//           res.json({
-//             success: true,
-//             token: "Bearer " + token
-//           });
-//         });
-//       } else {
-//         errors.password = "Incorrect password";
-//         return res.status(400).json(errors);
-//       }
-//     });
-//   });
 });
 
 router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
