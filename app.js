@@ -18,6 +18,8 @@ app.use(bodyParser.json());
 
 const req = require("express/lib/request");
 
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -30,8 +32,6 @@ mongoose
 
 
 // app.get("/", (req, res) => res.send("Hello World!!"));
-app.use(passport.initialize());
-require('./config/passport')(passport);
 
 app.use("/api/users", users);
 app.use("/api/tweets", tweets);
